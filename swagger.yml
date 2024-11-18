@@ -10,6 +10,32 @@ paths:
       responses:
         '200':
           description: 'Notebooks data'
+          content:
+            application/json:
+              schema:
+                properties:
+                  current_page: { type: integer, example: 1 }
+                  data: { type: array, items: { properties: { id: { type: integer, example: 5 }, fio: { type: string, example: 'Testov Test Testovich' }, company: { type: string, example: 'Test Company' }, phone: { type: string, format: phone, example: '88888888888' }, email: { type: string, example: test@example.com }, birthdate: { type: string, format: email, example: test@example.com }, photo: { type: string, format: url, example: 'https://example.com/photo.jpg' } }, type: object } }
+                  first_page_url: { type: string, example: 'http://127.0.0.1:8000/api/v1/notebook?page=1' }
+                  from: { type: integer, example: 1 }
+                  last_page: { type: integer, example: 1 }
+                  last_page_url: { type: string, format: url, example: 'http://127.0.0.1:8000/api/v1/notebook?page=1' }
+                  links: { type: array, items: { properties: { url: { type: string, format: url, example: 'http://127.0.0.1:8000/api/v1/notebook?page=1' }, label: { type: string, example: '&laquo; Previous' }, active: { type: boolean, example: false } }, type: object } }
+                  next_page_url: { type: string, example: 'http://127.0.0.1:8000/api/v1/notebook?page=1', nullable: true }
+                  path: { type: string, example: 'http://127.0.0.1:8000/api/v1/notebook?page=1' }
+                  per_page: { type: integer, example: 10 }
+                  prev_page_url: { type: string, example: 'http://127.0.0.1:8000/api/v1/notebook?page=1', nullable: true }
+                  to: { type: integer, example: 2 }
+                  total: { type: integer, example: 2 }
+                type: object
+        '500':
+          description: 'Database connection error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Database connection error' }
+                type: object
     post:
       summary: 'Create a new notebook'
       operationId: 09b50604f54eea208de3bb489cdc2a95
@@ -18,12 +44,38 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Notebook'
+              $ref: '#/components/schemas/NotebookResponse'
       responses:
         '201':
           description: 'Created notebook'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notebook'
+        '400':
+          description: 'Invalid input data'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Invalid input data' }
+                type: object
         '409':
           description: 'Notebook with this fio, email, or phone already exists'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Notebook with this fio, email, or phone already exists' }
+                type: object
+        '500':
+          description: 'Database connection error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Database connection error' }
+                type: object
   '/notebook/{id}':
     get:
       summary: 'Get a notebook by ID'
@@ -38,6 +90,20 @@ paths:
           description: Notebook
         '404':
           description: 'Notebook not found'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Notebook not found' }
+                type: object
+        '500':
+          description: 'Database connection error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Database connection error' }
+                type: object
     put:
       summary: 'Update a notebook by ID'
       operationId: 9c63754f7ecf02301842f654cc77c3a9
@@ -49,8 +115,30 @@ paths:
       responses:
         '200':
           description: 'Notebook updated'
+        '400':
+          description: 'Invalid input data'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Invalid input data' }
+                type: object
         '404':
           description: 'Notebook not found'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Notebook not found' }
+                type: object
+        '500':
+          description: 'Database connection error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Database connection error' }
+                type: object
     delete:
       summary: 'Delete a notebook by ID'
       operationId: d120841256f16aec86b6b8a982731e8f
@@ -60,7 +148,21 @@ paths:
           in: path
           description: 'ID of the notebook'
       responses:
-        '200':
+        '204':
           description: 'Delete success'
         '404':
           description: 'Notebook not found'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Notebook not found' }
+                type: object
+        '500':
+          description: 'Database connection error'
+          content:
+            application/json:
+              schema:
+                properties:
+                  message: { type: string, example: 'Database connection error' }
+                type: object
