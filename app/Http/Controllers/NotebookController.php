@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Notebook;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
@@ -54,7 +55,7 @@ class NotebookController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/notebook",
+     *     path="/api/v1/notebook",
      *     summary="Get all notebooks",
      *
      *     @OA\Response(
@@ -96,7 +97,7 @@ class NotebookController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/notebook",
+     *     path="/api/v1/notebook",
      *     summary="Create a new notebook",
      *     @OA\RequestBody(
      *         required=true,
@@ -171,7 +172,7 @@ class NotebookController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/notebook/{id}",
+     *     path="/api/v1/notebook/{id}",
      *     summary="Get a notebook by ID",
      *     @OA\Parameter(name="id", in="path", description="ID of the notebook"),
      *
@@ -210,7 +211,7 @@ class NotebookController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/notebook/{id}",
+     *     path="/api/v1/notebook/{id}",
      *     summary="Update a notebook by ID",
      *     @OA\Parameter(name="id", in="path", description="ID of the notebook"),
      *
@@ -270,7 +271,7 @@ class NotebookController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/notebook/{id}",
+     *     path="/api/v1/notebook/{id}",
      *     summary="Delete a notebook by ID",
      *     @OA\Parameter(name="id", in="path", description="ID of the notebook"),
      *

@@ -5,10 +5,10 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/notebook": {
+        "/api/v1/notebook": {
             "get": {
                 "summary": "Get all notebooks",
-                "operationId": "d08559fcae8b9b6b25747533ba924cc6",
+                "operationId": "3278597f70ffcf3df60a694e0ff0d1c1",
                 "responses": {
                     "200": {
                         "description": "Notebooks data",
@@ -40,7 +40,7 @@
             },
             "post": {
                 "summary": "Create a new notebook",
-                "operationId": "09b50604f54eea208de3bb489cdc2a95",
+                "operationId": "f737e96f4910ff283e75bc7e05c8379f",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -113,10 +113,10 @@
                 }
             }
         },
-        "/notebook/{id}": {
+        "/api/v1/notebook/{id}": {
             "get": {
                 "summary": "Get a notebook by ID",
-                "operationId": "ca8fa3795c051aa82157b27982d8f7ce",
+                "operationId": "a07418b0decb4969394e79f597aa543f",
                 "parameters": [
                     {
                         "name": "id",
@@ -171,7 +171,7 @@
             },
             "put": {
                 "summary": "Update a notebook by ID",
-                "operationId": "9c63754f7ecf02301842f654cc77c3a9",
+                "operationId": "f7e5828725095adf9cb16e88426f28e6",
                 "parameters": [
                     {
                         "name": "id",
@@ -242,7 +242,7 @@
             },
             "delete": {
                 "summary": "Delete a notebook by ID",
-                "operationId": "d120841256f16aec86b6b8a982731e8f",
+                "operationId": "6be314584e9cc2d22f7dff1d0b286f21",
                 "parameters": [
                     {
                         "name": "id",
