@@ -21,7 +21,6 @@ class NotebooksTest extends TestCase
     const INVALID_INPUT_DATA = 'Invalid input data';
     const DATABASE_CONNECTION_ERROR = 'Database connection error';
 
-
     protected function setUp(): void
     {
         parent::setUp();
