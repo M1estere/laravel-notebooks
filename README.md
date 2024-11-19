@@ -61,4 +61,7 @@
 Также был написан **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/docker-compose.yml">docker-compose</a>** файл для поднятия приложения на **laravel** и базы данных **mysql**.\
 В нем при запуске laravel контейнера выполняется **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/entrypoint.sh">entrypoint.sh</a>**, который отвечает за выполнение миграций после старта контейнера с бд
 
+![image](https://github.com/user-attachments/assets/e099be3d-2bb8-4f78-b7c4-e57e2fcf8f7b)
+
+
 
