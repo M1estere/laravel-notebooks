@@ -35,14 +35,14 @@
 
 
 Также был настроен маршрут /swagger, который при обращении возвращает страницу *swagger.blade.php*\
-(она берет данные из **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/storage/api-docs/api-docs.json">storage/api-docs/api-docs.json</a>**, генерируемого с помощью **php artisan swagger-lume:generate**),\
+(данные берутся из **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/storage/api-docs/api-docs.json">storage/api-docs/api-docs.json</a>** через **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/app/Http/Controllers/SwaggerController.php">SwaggerController</a>**, сам api-docs.json генерируется с помощью **php artisan swagger-lume:generate**),\
 где можно ознакомиться с методами апи подробнее, посмотреть примеры использования, ответы и тд:
 
 ![image](https://github.com/user-attachments/assets/8f5aadae-b53f-480a-9f80-e30bf39cb655)
 
 ## Тестирование
 Для тестирования апи в **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/tests/Feature/NotebooksTest.php">tests/Feature/NotebooksTest</a>** были написаны различные тесты,\
-охватывающие большинство возможных случаев при работе с апи (правильные данные, неправильные данные, отсутствие записей и тд)
+охватывающие большинство возможных случаев при работе с апи (корректная работа, неправильные данные, отсутствие записей и тд)
 
 Пример теста, проверяющего код на 409 при добавлении записи (создается дубликат):
 
