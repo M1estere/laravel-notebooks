@@ -1,67 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Тестовое задание
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## API
+Реализовано REST API для записной книжки, содержащее следующие методы:
+        
+        1.1. GET /api/v1/notebook/
+        1.2. POST /api/v1/notebook/
+        1.3. GET /api/v1/notebook/<id>/
+        1.4. POST /api/v1/notebook/<id>/
+        1.5. DELETE /api/v1/notebook/<id>/
 
-## About Laravel
+Поля для POST запискной книжки имеют вид: 
+   
+        1. ФИО (обязательное)
+        2. Компания
+        3. Телефон (обязательное)
+        4. Email (обязательное)
+        5. Дата рождения 
+        6. Фото
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Для обработки запросов был создан <a href="https://github.com/M1estere/laravel-notebooks/blob/main/app/Http/Controllers/NotebookController.php">NotebookController</a>, где в каждом методе обрабатываются разные случаи и в зависимости от ситуации возвращаются разные значения\
+Была добавлена пагинация, таким образом, вывод информации при **GET /api/v1/notebook/** выглядит следующим образом:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![image](https://github.com/user-attachments/assets/5b8be974-b3c5-4ea6-b054-005467047a06)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+А сама *data* при этом выглядит так:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![image](https://github.com/user-attachments/assets/df5da4cb-8457-408c-98fb-0e7245ad5ce9)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Swagger
+Для документирования методов был использован Swagger, пример для метода:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![image](https://github.com/user-attachments/assets/3e981bcc-5063-453a-b439-b47212543b4e)
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Также был настроен маршрут /swagger, который при обращении возвращает страницу *swagger.blade.php*\
+(она берет данные из **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/storage/api-docs/api-docs.json">storage/api-docs/api-docs.json</a>**, генерируемого с помощью **php artisan swagger-lume:generate**),\
+где можно ознакомиться с методами апи подробнее, посмотреть примеры использования, ответы и тд:
 
-### Premium Partners
+![image](https://github.com/user-attachments/assets/8f5aadae-b53f-480a-9f80-e30bf39cb655)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Тестирование
+Для тестирования апи в **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/tests/Feature/NotebooksTest.php">tests/Feature/NotebooksTest</a>** были написаны различные тесты,\
+охватывающие большинство возможных случаев при работе с апи (правильные данные, неправильные данные, отсутствие записей и тд)
 
-## Contributing
+Пример теста, проверяющего код на 409 при добавлении записи (создается дубликат):
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![image](https://github.com/user-attachments/assets/031b5594-3cef-4275-ad46-e56af724d987)
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Также для тестирования работы апи использовался Postman для отправки запросов, пример запроса:
 
-## Security Vulnerabilities
+![image](https://github.com/user-attachments/assets/08727fae-a361-417a-aec8-2b437434dd59)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Docker
+Для запуска приложения был написан **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/Dockerfile">Dockerfile</a>** для создания образа для php приложения,\
+установки нужных зависимостей и расширений, также он копирует файлы приложения и настраивает веб-сервер
+Также был написан **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/docker-compose.yml">docker-compose</a>** файл для поднятия приложения на **laravel** и базы данных **mysql**.\
+В нем при запуске laravel контейнера выполняется **<a href="https://github.com/M1estere/laravel-notebooks/blob/main/entrypoint.sh">entrypoint.sh</a>**, который отвечает за выполнение миграций после старта контейнера с бд
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# laravel-notebooks
+
