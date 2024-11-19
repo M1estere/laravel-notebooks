@@ -29,7 +29,7 @@
 ![image](https://github.com/user-attachments/assets/df5da4cb-8457-408c-98fb-0e7245ad5ce9)
 
 ## Swagger
-Для документирования методов был использован Swagger, пример для метода:
+Для документирования методов был использован Swagger, пример для метода POST:
 
 ![image](https://github.com/user-attachments/assets/3e981bcc-5063-453a-b439-b47212543b4e)
 
